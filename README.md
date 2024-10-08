@@ -90,7 +90,7 @@ The real-time ticket updates will work automatically as long as the server and c
 ## Screenshots
 *add screenshots of the working application here for visual reference*
 
-Future Enhancements
+## Future Enhancements
  - Add user authentication and role-based access control.
  - Add filtering and search functionality for tickets.
  - Implement email notifications for ticket updates.
