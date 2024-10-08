@@ -41,7 +41,7 @@ Follow these steps to set up and run the project locally.
 ```bash
 git clone https://github.com/your-username/it-ticket-support-system.git
 cd it-ticket-support-system
-
+```
 
 ### 2. Install Dependencies for Server
 Navigate to the server/ directory and install the dependencies:
@@ -49,46 +49,49 @@ Navigate to the server/ directory and install the dependencies:
 ```bash
 cd server
 npm install
-
+```
 
 ### 3. Set Up Environment Variables
 Create a .env file in the server/ directory and configure the following environment variables:
 
-makefile
+```makefile
 Copy code
 MONGO_URI=your_mongo_db_connection_string
 PORT=3000
+```
 
-4. Run the Server
+### 4. Run the Server
 To start the backend server, run:
 
-bash
-Copy code
+```bash
 node server.js
+```
 The server will start running at http://localhost:3000.
 
-5. Run the Client
+### 5. Run the Client
 To test the front-end, open the client/index.html file in your browser.
 
-6. Access the App
+### 6. Access the App
 Once both server and client are running, open your browser and go to:
 
-arduino
-Copy code
+```arduino
 http://localhost:3000
-7. Real-Time Updates
+```
+
+### 7. Real-Time Updates
 The real-time ticket updates will work automatically as long as the server and client are running.
 
-Usage
-Open the application in your browser.
-Submit a new IT ticket by filling out the form with the necessary details.
-View all tickets and their statuses in real-time.
-Admins or support agents can update ticket statuses, which will reflect instantly for all users.
-Screenshots
-You can add screenshots of the working application here for visual reference.
+## Usage
+ - Open the application in your browser.
+ - Submit a new IT ticket by filling out the form with the necessary details.
+ - View all tickets and their statuses in real-time.
+ - Admins or support agents can update ticket statuses, which will reflect instantly for all users.
+
+## Screenshots
+*add screenshots of the working application here for visual reference*
 
 Future Enhancements
-Add user authentication and role-based access control.
-Add filtering and search functionality for tickets.
-Implement email notifications for ticket updates.
-Enhance the UI with more responsive and user-friendly design.
+ - Add user authentication and role-based access control.
+ - Add filtering and search functionality for tickets.
+ - Implement email notifications for ticket updates.
+ - Enhance the UI with more responsive and user-friendly design.
