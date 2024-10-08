@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IT Ticket System</title>
+</head>
+
+<link rel="stylesheet" href="assets/styles.css"> 
+
+<!--HTML-->
+<body>
+  <h1>Ticket Submission</h1>
+  <form id="ticketForm">
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" required>
+    
+    <label for="category">Category:</label>
+    <select id="category" name="category">
+      <option value="software">Software</option>
+      <option value="hardware">Hardware</option>
+      <option value="other">Other</option>
+    </select>
+  
+    <label for="priority">Priority:</label>
+    <select id="priority" name="priority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+  
+    <label for="description">Description:</label>
+    <textarea id="description" name="description"></textarea>
+  
+    <button id="updateTicketButton">Upload Ticket</button>
+  </form>
+  
+
+  <!--CSS (css file isn't working when running from the local host, so the css is here for now)-->
+  <style>
+    /* Basic Reset */
+    body {
+    font-family: Arial, sans-serif; /* Use a clean font */
+    margin: 0;
+    padding: 0;
+    background-color: #382374; /* Light background color */
+    }
+
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+    }
+
+    /* Form container styling */
+    #ticketForm {
+    background-color: #ffffff; /* White background for the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 800px; /* Maximum width */
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Inner spacing */
+    }
+
+    /* Label styling */
+    label {
+    display: block; /* Stack labels and inputs */
+    margin-bottom: 8px; /* Space between label and input */
+    font-weight: bold; /* Make labels bold */
+    }
+
+    /* Input and select field styling */
+    input[type="text"],
+    textarea,
+    select {
+    width: 90%; /* Full width */
+    padding: 10px; /* Inner spacing */
+    margin-bottom: 15px; /* Space between fields */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+    }
+
+    /* Textarea specific styling */
+    textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    }
+
+    /* Button styling */
+    button {
+    background-color: #382374; /* Primary button color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px 15px; /* Inner spacing */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Transition for hover effect */
+    }
+
+    /* Button hover effect */
+    button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    }
+
+  </style>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    // Initialize the WebSocket connection
+    const socket = io();
+
+    // Listen for "ticket-updated" events from the server
+    socket.on('ticket-updated', (ticket) => {
+      console.log('Ticket updated:', ticket);
+      
+      // Display the updated ticket in the messages div
+      const messageDiv = document.getElementById('messages');
+      messageDiv.innerHTML += `<p>Ticket Updated: ${ticket.subject}</p>`;
+    });
+
+
+    // Emit an event when the button is clicked
+    document.getElementById('updateTicketButton').addEventListener('click', () => {
+      const ticket = {
+        subject : document.getElementById('subject').value,
+        category : document.getElementById('category').value,
+        priority : document.getElementById('priority').value,
+        description : document.getElementById('description').value,
+      };
+      // Send the ticket update to the server
+      socket.emit('update-ticket', ticket);
+    });
+  </script>
+
+</body>
+</html>
